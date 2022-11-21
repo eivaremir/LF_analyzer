@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Union
-from engine import lexic
+from engine import lexic,syntax
 from fastapi.middleware.cors import CORSMiddleware
 
 class Sentence(BaseModel):
@@ -26,3 +26,7 @@ async def root():
 @app.post("/lexicAnalysis")
 async def lexic_analysis(body : Sentence):
     return {"analysis": lexic(body.sentence)}
+
+@app.post("/syntaxAnalysis")
+async def lexic_analysis(body : Sentence):
+    return syntax(body.sentence)
