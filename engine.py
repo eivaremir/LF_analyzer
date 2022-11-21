@@ -20,11 +20,11 @@ def lexic(sentence):
     return analysis_array
 
 def syntax(sentence):
-    l = lexic("they pay beans with money and cents")
+    l = lexic(sentence)
     lexems = [x["lexem"] for x in l]
     _in = "".join(lexems)
     result = False
-    for lang in ["ENGLISH","SPANISH","PORTUGUESE"]:
+    for lang in ["ENGLISH"]:#,"SPANISH","PORTUGUESE"]:
         _out = _in
         print(lang,"Processing"," ".join([x["token"] for x in l]),"\n\t"+_out)
 
