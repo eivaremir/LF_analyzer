@@ -1,10 +1,13 @@
 from lexic_tokens import TOKENS
 from lexic_tokens import PRODUCTION_RULES
+import pdb
+import pandas as pd
 def lexic(sentence):
     tokens = [ x.casefold() for x in sentence.split(" ")]
     analysis_array = list()
     for token in tokens:
         for language in TOKENS:
+            found_in_a_lang = False
             for lexem,language_tokens in TOKENS[language].items():
                 #print(token,lexem,language_tokens)
                 if token in [ x.casefold() for x in language_tokens]:
@@ -14,17 +17,23 @@ def lexic(sentence):
                         "lang":language,
                         "lexem":lexem
                     })
+                    found_in_a_lang=True
                     break
+            if found_in_a_lang: break
             
 
     return analysis_array
 
 def syntax(sentence):
     l = lexic(sentence)
+    df=pd.DataFrame(l)
+    count=df.groupby("lang").count()
     lexems = [x["lexem"] for x in l]
     _in = "".join(lexems)
     result = False
-    for lang in ["ENGLISH"]:#,"SPANISH","PORTUGUESE"]:
+
+    #pdb.set_trace()
+    for lang in ["ENGLISH","SPANISH","PORTUGUESE"]:
         _out = _in
         print(lang,"Processing"," ".join([x["token"] for x in l]),"\n\t"+_out)
 
@@ -58,7 +67,7 @@ def syntax(sentence):
             break
     return {
         "result":result,
-        "language":lang
+        "language":count.sort_values(by="token",ascending=False).iloc[0].name
 
     }
     
