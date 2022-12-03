@@ -1,0 +1,203 @@
+.ingles {
+	/* Rectangle 1 */
+	position: absolute;
+	width: 325px;
+	height: 386.9px;
+	left: 81px;
+	top: 90px;
+	background: #f3de2c;
+	box-shadow: 0px 35px 156px rgba(0, 0, 0, 0.1);
+	border-radius: 30px;
+}
+.ingles:hover {
+	transform: scale(
+		1.1
+	); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+.español {
+	/* Rectangle 2 */
+	position: absolute;
+	width: 325px;
+	height: 386.9px;
+	left: 477px;
+	top: 90px;
+
+	background: #fb6107;
+	box-shadow: 0px 35px 156px rgba(0, 0, 0, 0.1);
+	border-radius: 30px;
+}
+.español:hover {
+	transform: scale(
+		1.1
+	); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+.portu {
+	/* Rectangle 3 */
+	position: absolute;
+	width: 325px;
+	height: 386.9px;
+	left: 873px;
+	top: 90px;
+	margin: auto;
+	background: #7cb518;
+	box-shadow: 0px 35px 156px rgba(0, 0, 0, 0.1);
+	border-radius: 30px;
+}
+.portu:hover {
+	transform: scale(
+		1.1
+	); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+@import url(http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic);
+#textChoose {
+	/* English */
+	padding: 35px 0px 0px 0px;
+	margin: 0px;
+	align-items: center;
+	font-family: 'Playfair Display';
+	font-style: normal;
+	font-weight: 800;
+	font-size: 55px;
+	line-height: 73px;
+
+	color: #252525;
+}
+.flex {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
+}
+
+#textPre {
+	/* Click on me to choose */
+	padding: 185px 0px 0px 0px;
+	margin: -38px;
+	font-family: 'Playfair Display';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 27px;
+	/* identical to box height */
+
+	color: #252525;
+}
+
+.type {
+	/* My name is Diego */
+	border: 0;
+	outline: 0;
+	width: 75%;
+	height: 67px;
+	font-family: 'Playfair Display';
+	font-style: italic;
+	font-weight: 400;
+	font-size: 50px;
+	/* identical to box height */
+	text-align: center;
+
+	color: #252525;
+}
+.linea {
+	/* Line 1 */
+	width: 75%;
+	background-color: #2b2b2b;
+
+	border: 1px solid #2b2b2b;
+}
+.boton {
+	background: #fb6107;
+}
+.boton1 {
+	background: #f3de2c;
+}
+.boton2 {
+	background: #7cb518;
+}
+.boton {
+	/* Rectangle 4 */
+	border: none;
+	padding: 15px 25px;
+	cursor: pointer;
+	border-radius: 20px;
+	/* Execute */
+	font-family: 'Playfair Display';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	/* identical to box height */
+	text-align: center;
+
+	color: #252525;
+}
+
+.back {
+	padding: 25px;
+}
+
+.fila1 {
+	width: 119px;
+	height: 80px;
+
+	font-family: 'Playfair Display';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 45px;
+
+	color: #000000;
+}
+
+.labellang {
+	height: 80px;
+	left: 330px;
+	top: 531px;
+	font-family: 'Playfair Display';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 45px;
+	color: #000000;
+}
+
+h1 {
+	font-weight: 400;
+	margin-left: 5px;
+	font-family: 'Playfair Display';
+	font-size: 45px;
+	color: #000000;
+	text-transform: lowercase;
+}
+.respuesta {
+	text-transform: lowercase;
+}
+
+.fila2 {
+	text-transform: lowercase;
+	font-family: 'Playfair Display';
+	font-style: italic;
+	font-weight: 400;
+	font-size: 20px;
+	text-align: center;
+
+	color: #000000;
+}
+table {
+	margin-top: 25px;
+}
+td {
+	border-right: 28px solid rgba(0, 0, 0, 0);
+}
+td:last-child {
+	border-right: 0px solid rgba(0, 0, 0, 0);
+}
+
+.hidden {
+	display: none;
+}
+.flex-row {
+	display: flex;
+}
+
+.imageSize {
+	height: 40px;
+}

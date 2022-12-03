@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>EPE</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<a href="choose.html">
+			<svg
+				class="back"
+				width="42"
+				height="24"
+				viewBox="0 0 42 24"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M0.93934 10.9393C0.353553 11.5251 0.353553 12.4749 0.93934 13.0607L10.4853 22.6066C11.0711 23.1924 12.0208 23.1924 12.6066 22.6066C13.1924 22.0208 13.1924 21.0711 12.6066 20.4853L4.12132 12L12.6066 3.51472C13.1924 2.92893 13.1924 1.97918 12.6066 1.3934C12.0208 0.807612 11.0711 0.807612 10.4853 1.3934L0.93934 10.9393ZM42 10.5L2 10.5V13.5L42 13.5V10.5Z"
+					fill="#252525"
+				/>
+			</svg>
+		</a>
+		<div class="flex">
+			<input
+				type="text"
+				name="escribir"
+				placeholder="Escribir aquí"
+				align="center"
+				class="type"
+				id="lexicalText"
+			/>
+			<hr class="linea" />
+			<input type="button" class="boton" value="Ejecutar" id="lexicalButton" />
+
+			<table id="lexicalTable">
+				<tr class="fila1" id="token" align="center"></tr>
+				<tr class="fila2" id="lang" align="center"></tr>
+				<tr class="fila2" id="lexem" align="center"></tr>
+			</table>
+			<div id="language-container" class="hidden">
+				<h1 id="language-label" class="labellang">El idioma es</h1>
+				<h1 id="language" class="respuesta"></h1>
+			</div>
+		</div>
+		<script>
+			const params = new Proxy(new URLSearchParams(window.location.search), {
+				get: (searchParams, prop) => searchParams.get(prop),
+			});
+			// Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+			params.lang;
+			let lexicalText = document.querySelector('#lexicalText');
+			let lexicalButton = document.querySelector('#lexicalButton');
+			let frase = document.querySelector('#language-label');
+			if (params.lang == 'en') {
+				lexicalText.placeholder = 'Type here';
+				lexicalButton.value = 'Execute';
+				lexicalButton.classList.toggle('boton1');
+				frase.innerText = 'The language is';
+			}
+			if (params.lang == 'pg') {
+				lexicalText.placeholder = 'Escreva aqui';
+				lexicalButton.value = 'Executar';
+				lexicalButton.classList.toggle('boton2');
+				frase.innerText = 'A linguagem é';
+			}
+		</script>
+		<script src="LF_server.js"></script>
+		<script>
+			let buttonisclicked = false;
+			const makeTable = (tokens) => {
+				let tokenRow = document.querySelector('#token');
+				let langRow = document.querySelector('#lang');
+				let lexemRow = document.querySelector('#lexem');
+				tokenRow.innerHTML = '';
+				langRow.innerHTML = '';
+				lexemRow.innerHTML = '';
+				tokens.analysis.forEach((token) => {
+					let t1 = document.createElement('td');
+					t1.innerText = token.token;
+					tokenRow.appendChild(t1);
+
+					let t2 = document.createElement('td');
+					t2.innerText = token.lang;
+					langRow.appendChild(t2);
+
+					let t3 = document.createElement('td');
+					t3.innerText = token.lexem;
+					lexemRow.appendChild(t3);
+				});
+			};
+
+			const showLang = (sentence) => {
+				let languageH1 = document.querySelector('#language');
+				let goodh1 = document.querySelector('#good');
+				let language_container = document.querySelector('#language-container');
+				languageH1.innerHTML = '';
+				if (!buttonisclicked) {
+					buttonisclicked = true;
+					language_container.classList.toggle('flex-row');
+				}
+				let sentence1 = sentence.language;
+				languageH1.append(sentence1);
+				var image = document.createElement('IMG');
+				let imgVer = sentence.result;
+				if (imgVer == true) {
+					image.src = 'goodicon.png';
+					image.className = 'imageSize';
+					languageH1.append(image);
+				} else {
+					image.src = 'badicon.png';
+					image.className = 'imageSize';
+					languageH1.append(image);
+				}
+			};
+
+			document
+				.querySelector('#lexicalButton')
+				.addEventListener('click', async () => {
+					const valorInput = await lexicalAnalysis(
+						document.querySelector('#lexicalText').value
+					);
+					const languageInput = await syntaxAnalysis(
+						document.querySelector('#lexicalText').value
+					);
+					makeTable(valorInput);
+					showLang(languageInput);
+				});
+		</script>
+	</body>
+</html>
